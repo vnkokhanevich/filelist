@@ -25,7 +25,6 @@ public class FileIndexTest {
     public void testFileIndex() throws Exception {
         String path = "/Users/vlad/Documents/Projects/demo/src/test/resources/spectra-hash";
         List<String> fileList = fileIndex.fileIndex(path);
-
     }
 
     @Test
@@ -34,6 +33,21 @@ public class FileIndexTest {
     }
     @Test
     public void testReturnDirectory() throws Exception {
+        String path = "/Users/vlad/Documents/Projects/demo/src/test/resources/spectra-hash";
+        List<String> fileList = fileIndex.fileIndex(path);
+        File folderName = new File(path);
+        File[] list = folderName.listFiles();
+        for (File file : list){
+            if (file.getName().toLowerCase().endsWith(".d")) {
+                assert(file.isDirectory());
+            }
+            if (file.isDirectory()){
+                assert (file.canRead());
+            }
+        }
+    }
+    @Test
+    public void testFilename() throws Exception {
         String path = "/Users/vlad/Documents/Projects/demo/src/test/resources/spectra-hash";
         List<String> fileList = fileIndex.fileIndex(path);
     }
